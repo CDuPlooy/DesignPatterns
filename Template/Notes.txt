@@ -1,0 +1,24 @@
+Gee vir Ancois.
+
+Object inheritance:
+     ->Super class/parent class is the upper class that child classes can inherit from.
+
+     ->Animal is a super class.
+       Dog and cat are two child classes of the parent class Animal.
+
+     ->A child class inherits everything from the parent class.
+
+     ->A protected member can only be accessed via a child class. (The protected member must be declared in the parent class)
+
+     ->Function overloading:
+          help(int a);
+          help(char a);
+
+     ->Function overriding:
+          Dog::help() is overriding the Animal::help() function.
+
+     ->Virtual functions:
+          A child class will rather call it's overridden function.
+
+     ->Pure virtual:
+          Cannot implement a pure virtual class.
