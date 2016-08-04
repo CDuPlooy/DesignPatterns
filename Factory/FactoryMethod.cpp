@@ -97,7 +97,6 @@ void drawLine(){
 }
 
 int main(){
-      int *a = new *int(6);
       Musketeer *athos = Musketeer::createMusketeer(1);
       athos->emote();
       drawLine();
