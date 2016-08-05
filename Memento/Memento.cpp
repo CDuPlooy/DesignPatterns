@@ -88,3 +88,5 @@ Thus Point is a friendly class of position.
 Without the friend class specifier Point won't be able to call position's constructor. The friend specifier
 exposes Position's interface to point.
 */
+
+//This is a test line
