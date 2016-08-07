@@ -1,0 +1,56 @@
+┌──test.c─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│4       int main(){                                                                                                                                                                                                                      │
+│5       puts("Hello world");                                                                                                                                                                                                             │
+B+ │6       1+1;                                                                                                                                                                                                                             │
+>│7       return 0;                                                                                                                                                                                                                        │
+│8       }                                                                                                                                                                                                                                │
+│9                                                                                                                                                                                                                                        │
+│10                                                                                                                                                                                                                                       │
+│11                                                                                                                                                                                                                                       │
+│12                                                                                                                                                                                                                                       │
+│13                                                                                                                                                                                                                                       │
+│14                                                                                                                                                                                                                                       │
+│15                                                                                                                                                                                                                                       │
+│16                                                                                                                                                                                                                                       │
+│17                                                                                                                                                                                                                                       │
+│18                                                                                                                                                                                                                                       │
+│19                                                                                                                                                                                                                                       │
+│20                                                                                                                                                                                                                                       │
+│21                                                                                                                                                                                                                                       │
+│22                                                                                                                                                                                                                                       │
+│23                                                                                                                                                                                                                                       │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+│0x4004e0 <main>                 push   %rbp                                                                                                                                                                                              │
+│0x4004e1 <main+1>               mov    %rsp,%rbp                                                                                                                                                                                         │
+│0x4004e4 <main+4>               sub    $0x10,%rsp                                                                                                                                                                                        │
+│0x4004e8 <main+8>               movabs $0x400594,%rdi                                                                                                                                                                                    │
+│0x4004f2 <main+18>              movl   $0x0,-0x4(%rbp)                                                                                                                                                                                   │
+│0x4004f9 <main+25>              callq  0x4003b0 <puts@plt>                                                                                                                                                                               │
+│0x4004fe <main+30>              xor    %ecx,%ecx                                                                                                                                                                                         │
+B+>│0x400500 <main+32>              mov    %eax,-0x8(%rbp)                                                                                                                                                                                   │
+│0x400503 <main+35>              mov    %ecx,%eax                                                                                                                                                                                         │
+│0x400505 <main+37>              add    $0x10,%rsp                                                                                                                                                                                        │
+│0x400509 <main+41>              pop    %rbp                                                                                                                                                                                              │
+│0x40050a <main+42>              retq                                                                                                                                                                                                     │
+│0x40050b                        nopl   0x0(%rax,%rax,1)                                                                                                                                                                                  │
+│0x400510 <__libc_csu_init>      push   %r15                                                                                                                                                                                              │
+│0x400512 <__libc_csu_init+2>    push   %r14                                                                                                                                                                                              │
+│0x400514 <__libc_csu_init+4>    mov    %edi,%r15d                                                                                                                                                                                        │
+│0x400517 <__libc_csu_init+7>    push   %r13                                                                                                                                                                                              │
+│0x400519 <__libc_csu_init+9>    push   %r12                                                                                                                                                                                              │
+│0x40051b <__libc_csu_init+11>   lea    0x2001ae(%rip),%r12        # 0x6006d0                                                                                                                                                             │
+│0x400522 <__libc_csu_init+18>   push   %rbp                                                                                                                                                                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+native process 8285 In: main                                                                                                                                                                                               L7    PC: 0x400500
+
+(gdb) layout next
+(gdb) break 6
+Breakpoint 1 at 0x400500: file test.c, line 6.
+(gdb) run
+Starting program: /home/grim/Documents/Programming/University/COS121/DesignPatterns/Prototype/a.out
+Hello world
+Breakpoint 1, main () at test.c:7
+(gdb)
+
+
+From the above it should be clear that even though 1+1 can compile it usually won't.
