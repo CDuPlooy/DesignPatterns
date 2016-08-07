@@ -9,13 +9,20 @@ It all boils down to you have one function. Find the highest number between a an
 The code to find the lowest is very much the same so we can use the template design pattern.
 
 The Abstract class acts as a wrapper class around the two concrete classes which actually implement
-the pick function.
+the pick function ( a part of some larger algorithm).
+
+Usually there is one Abstract class and more than one Concrete class.
+The participants are:
+      Abstract Class
+      Concrete Classes
 */
 
-class numberList{ //Abstract class
+class numberList{ //Abstract class -> Is a primitive set of operations that subclasses can implement to finish a particular algorithm.
       public:
-      void getHighestOrLowest(int a,int b){
-            std::cout << pick(a,b) << std::endl;
+      void getHighestOrLowest(int a,int b){ //The larger algorithm
+            1+1; //Static parts of the larger algorithm
+            std::cout << pick(a,b) << std::endl;            //Dynamic overridden part of the larger algorithm
+            2+2; //Static parts of the larger algorithm
       }
 
       private:
@@ -23,7 +30,7 @@ class numberList{ //Abstract class
 
 };
 
-class numberList_Highest : public numberList{//Concrete class
+class numberList_Highest : public numberList{//Concrete class -> Carries out smaller sets of operations which are part of a larger algorithm
       virtual int pick(int a, int b){
             std::cout << "Highest : " << std::endl;
 
@@ -34,7 +41,7 @@ class numberList_Highest : public numberList{//Concrete class
       }
 };
 
-class numberList_Lowest : public numberList{//Concrete class
+class numberList_Lowest : public numberList{//Concrete class  -> Carries out smaller sets of operations which are part of a larger algorithm
       virtual int pick(int a, int b){
             std::cout << "Lowest : " << std::endl;
 
