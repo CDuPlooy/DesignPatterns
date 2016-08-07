@@ -1,1 +1,67 @@
-Pending
+┌──test.c─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│4       int main(){                                                                                                                                                                                                                      │
+│5             puts("adding 1 + 1");                                                                                                                                                                                                      │
+B+ │6             1+1;                                                                                                                                                                                                                       │
+>│7             return 0;                                                                                                                                                                                                                  │
+│8       }                                                                                                                                                                                                                                │
+│9                                                                                                                                                                                                                                        │
+│10                                                                                                                                                                                                                                       │
+│11                                                                                                                                                                                                                                       │
+│12                                                                                                                                                                                                                                       │
+│13                                                                                                                                                                                                                                       │
+│14                                                                                                                                                                                                                                       │
+│15                                                                                                                                                                                                                                       │
+│16                                                                                                                                                                                                                                       │
+│17                                                                                                                                                                                                                                       │
+│18                                                                                                                                                                                                                                       │
+│19                                                                                                                                                                                                                                       │
+│20                                                                                                                                                                                                                                       │
+│21                                                                                                                                                                                                                                       │
+│22                                                                                                                                                                                                                                       │
+│23                                                                                                                                                                                                                                       │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+│0x4004e0 <main>                 push   rbp                                                                                                                                                                                               │
+│0x4004e1 <main+1>               mov    rbp,rsp                                                                                                                                                                                           │
+│0x4004e4 <main+4>               sub    rsp,0x10             -> creating space on the stack to push params    //But line 23 pushes the memory location of the string...                                                                                                                                                                         │
+│0x4004e8 <main+8>               movabs rdi,0x400594                                                                                                                                                                                      │
+│0x4004f2 <main+18>              mov    DWORD PTR [rbp-0x4],0x0                                                                                                                                                                           │
+│0x4004f9 <main+25>              call   0x4003b0 <puts@plt>                                                                                                                                                                               │
+│0x4004fe <main+30>              xor    ecx,ecx                  -> Zeros ecx                                                                                                                                                                         │
+B+>│0x400500 <main+32>              mov    DWORD PTR [rbp-0x8],eax                                                                                                                                                                           │
+│0x400503 <main+35>              mov    eax,ecx                   -> Loads zero into eax for the leaf call to exit()                                                                                                                                                                        │
+│0x400505 <main+37>              add    rsp,0x10            -> freeing space on the stack after puts has been called. This is the _cdelc calling convention                                                                                                                                                                                          │
+│0x400509 <main+41>              pop    rbp                                                                                                                                                                                               │
+│0x40050a <main+42>              ret                                                                                                                                                                                                      │
+│0x40050b                        nop    DWORD PTR [rax+rax*1+0x0]                                                                                                                                                                         │
+│0x400510 <__libc_csu_init>      push   r15                                                                                                                                                                                               │
+│0x400512 <__libc_csu_init+2>    push   r14                                                                                                                                                                                               │
+│0x400514 <__libc_csu_init+4>    mov    r15d,edi                                                                                                                                                                                          │
+│0x400517 <__libc_csu_init+7>    push   r13                                                                                                                                                                                               │
+│0x400519 <__libc_csu_init+9>    push   r12                                                                                                                                                                                               │
+│0x40051b <__libc_csu_init+11>   lea    r12,[rip+0x2001ae]        # 0x6006d0                                                                                                                                                              │
+│0x400522 <__libc_csu_init+18>   push   rbp                                                                                                                                                                                               │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+native process 9051 In: main                                                                                                                                                                                               L7    PC: 0x400500
+
+(gdb) layout next
+(gdb) break 6
+Breakpoint 1 at 0x400500: file test.c, line 6.
+(gdb) run
+Starting program: /home/grim/Documents/Programming/University/COS121/DesignPatterns/Prototype/a.out
+adding 1 + 1
+Breakpoint 1, main () at test.c:7
+(gdb)
+
+
+From the above it is clear that 1+1 can compile but for the most part because the expression is unused won't. You can force it to compile
+by adding something like
+
+int a = 1 + 1;
+
+The compiler does some strange things here. A call to puts would look like
+
+push ebx
+call _puts
+add esp,4   ;For 32 bit
+
+My assembly is rusty though , I still think it's safe to say that 1+1 does not compile
