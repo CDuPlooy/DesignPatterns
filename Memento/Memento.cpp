@@ -5,7 +5,7 @@ class Position;
 class Point;
 class PointStore;
 
-class Position{
+class Position{ //Caretaker -> An object used to implement the undo function.
       friend class Point; //So Point inherits Positions attributes
 
       private:
@@ -14,7 +14,7 @@ class Position{
             int y;
 };
 
-class PointStore{ //Memento
+class PointStore{ //Memento -> Stores member attributes of the originator.
       public:
             PointStore(){
                   token = NULL; //to fix a segmentation fault.
@@ -33,7 +33,7 @@ class PointStore{ //Memento
             Position *token;
 };
 
-class Point{ //Originator
+class Point{ //Originator -> Creates a memento.
       public:
             Point(int _x , int _y){
                   x = _x;
