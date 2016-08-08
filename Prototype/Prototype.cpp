@@ -100,9 +100,11 @@ class Cecil : public Mob{ //Concrete protoype : Implements the actual cloning ov
 int main(){
      Mordekai mordekai(1,2);
      mobGenerator *MordekaiGenerator = new mobGenerator(&mordekai); //Just an example of how to use a static instance of Mordekai.
+     Mordekai *mordekai2 = (Mordekai *)MordekaiGenerator->spawnMonster();
 
      Cecil *cecil = new Cecil(30,50);
-     mobGenerator *CecilGenerator = new mobGenerator(cecil); //Does this help understand pointers?
+     mobGenerator *CecilGenerator = new mobGenerator(cecil); //Does this help understand pointers? ; Sets the type of the mobGenerator via a wrapper (A compiler class wrapper anyway.);
+     Cecil *cecil2 = (Cecil *)CecilGenerator->spawnMonster(); //Remember to cast object type.
 
      RhinoCyberToy *rct = new RhinoCyberToy(30,20);
      /*
