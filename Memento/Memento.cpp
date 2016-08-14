@@ -5,7 +5,7 @@ class Position;
 class Point;
 class PointStore;
 
-class Position{ //Caretaker -> An object used to implement the undo function -> keeps the memento safe.
+class Position{ //Caretaker -> An object used to implement the undo function.
       friend class Point; //So Point inherits Positions attributes
 
       private:
