@@ -115,13 +115,23 @@ int main(){
      mobGenerator *rctGenerator = new mobGenerator(rct);
 
 
+     //delete mordekai will result in undefined behaviour because mordekai is statically declared.
+     //It could just as easily have been dynamically created but I was trying to showcase pointers.
+
+
+     //Dynamic object creation
+     Mob *mobArray[10];
+     for(size_t i = 0 ; i < i ; i++){
+          mobArray[i] = (Cecil *)CecilGenerator->spawnMonster();
+          }
+
+
+
      delete rct;
      delete cecil;
      delete CecilGenerator;
      delete rctGenerator;
      delete MordekaiGenerator;
-     //delete mordekai will result in undefined behaviour because mordekai is statically declared.
-     //It could just as easily have been dynamically created but I was trying to showcase pointers.
 
      return 0;
 }
