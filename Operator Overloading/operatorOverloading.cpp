@@ -36,16 +36,17 @@ class Square{
             }
 
             bool operator== (const Square &test){
-                  if(sizeof(test) == sizeof(*this))
-                        return true;
-                  return false; //fallthough
+                  if(test.height != this->height)
+                        return false;
+                  if(test.width != this->width)
+                        return false;
 
-                  //The line can be summarised as return (sizeof(test) == sizeof(*this));
+                  return true; //fallthough
             }
 
 
 
-            Square operator=(const Square &anotherSquare){ 
+            Square operator=(const Square &anotherSquare){
                   if(this == &anotherSquare)
                         return *this;
 
@@ -73,4 +74,10 @@ int main(){
       cout << "Reassign cSquare to aSquare: " << endl;
       aSquare = cSquare;
       aSquare.Display();
+
+      cout << "Testing equality: " << endl;
+      if(aSquare == cSquare)
+            cout << "\tObjects are equal." << endl;
+      else
+            cout << "\tObjects are not equal!" << endl;
 }
