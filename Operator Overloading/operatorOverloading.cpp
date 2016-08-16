@@ -14,7 +14,7 @@ class Square{
                   std::cout << "Width : " << width << std::endl << "Height : " << height << std::endl << std::endl;
             }
 
-            Square operator+(const Square &aSquare){ // Square + Square
+            Square operator+(const Square &aSquare){ // Square ++
                   Square new_square(0,0);
 
                   new_square.width = aSquare.width + this->width;
@@ -23,18 +23,35 @@ class Square{
                   return new_square;
             }
 
-            Square operator++ ( int ){ // Square++
+            Square operator++(){ //++Square
+                  this->width = 0;
+                  this->height = 0;
+                  return *this;
+            }
+
+            Square operator++ ( int ){ // Postfix Square++
                   this->width++;
                   this->height++;
                   return *this;
             }
 
-            Square operator=(const Square &anotherSquare){ //still working on this one.
+            bool operator== (const Square &test){
+                  if(sizeof(test) == sizeof(*this))
+                        return true;
+                  return false; //fallthough
+
+                  //The line can be summarised as return (sizeof(test) == sizeof(*this));
+            }
+
+
+
+            Square operator=(const Square &anotherSquare){ 
                   if(this == &anotherSquare)
                         return *this;
 
-                  Square *new_square = new Square(1,2);
-                  return *new_square;
+                  width = anotherSquare.width;
+                  height = anotherSquare.height;
+                  return *this;
             }
       private:
             int height, width;
@@ -44,7 +61,7 @@ class Square{
 int main(){
       Square aSquare(1,2);
       Square bSquare(3,2);
-      Square cSquare(5,5);
+      Square cSquare(6,9);
       cout << "First add two squares: " << endl;
       aSquare = aSquare + bSquare;
       aSquare.Display();
