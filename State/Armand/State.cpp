@@ -5,7 +5,7 @@
 
    This examples uses entities , a particular entity will perform a particular action in a particular state.
    I apologise for the strange indentation , it would seem my editor is misbehaving.   
-   */
+*/
 
 using namespace std;
 
@@ -19,7 +19,7 @@ class Animal{
     private:
         Demeanour *demeanour;
     public:
-        Animal(); //allocation of incomplete type if inlined
+        Animal();	//allocation of incomplete type if inlined
         void feed();
 };
 
@@ -35,7 +35,7 @@ class Impatient : public Demeanour{
     public:
         string mood = "Impatient";
         void act(){
-            cout << "Rawr , food now" << endl;
+            cout << "Rawr, food now" << endl;
         }
         ~Impatient(){};
     protected:
@@ -86,8 +86,8 @@ Demeanour * Irritable::change(){
 int main(){
     Animal Lara; //The coolest doge in the world.
     Lara.feed();
-    Lara.feed();    // ... Overfeeding your dog might cause it to become irritable..
+    Lara.feed(); // ... Overfeeding your dog might cause it to become irritable..
     Lara.feed();
-    Lara.feed();    // Lara loves food though.
+    Lara.feed(); // Lara loves food though.
     return 0;
 }
